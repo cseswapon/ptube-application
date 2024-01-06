@@ -12,7 +12,10 @@ export default function Video({ video }) {
             <img src={thumbnail} className="w-full h-auto" alt={title} />
           </Link>
 
-          <p className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
+          {/* <p onClick={refetch} className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
+            {duration}
+          </p> */}
+          <p  className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
             {duration}
           </p>
         </div>
