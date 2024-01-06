@@ -5,11 +5,14 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:9000",
   }),
+  tagTypes: ["Videos"],
   endpoints: (builder) => ({
     getVideos: builder.query({
       query: () => ({ url: "/videos", method: "GET" }),
       // auto matic data refetch unused data ver 5sec
       keepUnusedDataFor: 5,
+      //   identify this tag (cash delete and refetch)
+      providesTags: ["Videos"],
     }),
     getVideo: builder.query({
       query: (videoId) => ({
@@ -27,8 +30,20 @@ export const apiSlice = createApi({
       },
       keepUnusedDataFor: 5,
     }),
+    addVideo: builder.mutation({
+      query: (body) => ({
+        url: "/videos",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Videos"],
+    }),
   }),
 });
 
-export const { useGetVideosQuery, useGetVideoQuery, useGetRelatedVideosQuery } =
-  apiSlice;
+export const {
+  useGetVideosQuery,
+  useGetVideoQuery,
+  useGetRelatedVideosQuery,
+  useAddVideoMutation,
+} = apiSlice;
